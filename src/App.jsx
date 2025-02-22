@@ -6,6 +6,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Grid2 } from "@mui/material";
 import { DataProvider } from "./Context";
 import UploadDesk from "./UploadDesk";
+import OutputDesk from "./OutputDesk";
 
 function App() {
   const theme = createTheme({
@@ -91,16 +92,15 @@ function App() {
           <Grid2 size={{ xs: 12, md: 6, height: "100%", width: "100%" }}>
             <div
               style={{
-                // height: "100vh",
                 height: "100%",
-                // overflowY: "clip",
                 width: "100%",
                 display: "flex",
+                flexDirection: "column",
                 justifyContent: "center",
                 alignItems: "center",
               }}
             >
-              {/* <ChatWindow /> */}
+              <OutputDesk />
             </div>
           </Grid2>
         </Grid2>
