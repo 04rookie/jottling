@@ -1,21 +1,36 @@
 import { Radio, Typography } from "@mui/material";
 import React from "react";
-import { red, green } from "@mui/material/colors";
-export default function Options({ label, correct, selected, setSelected }) {
+import { red, green, blue } from "@mui/material/colors";
+export default function Options({
+  label,
+  correct,
+  selected,
+  setSelected,
+  uuid,
+  questionRef,
+  i,
+}) {
+  console.log(correct, selected, i);
+
   return (
     <div
       style={{ display: "flex", flexDirection: "row", alignItems: "center" }}
     >
       <Radio
-        checked={selected == label}
-        onChange={(e) => {
-          setSelected(e.target.value);
+        inputProps={{
+          'aria-label': label,
         }}
-        value={label}
+        checked={selected == i}
+        onChange={(e) => {
+          setSelected(Number(e.target.value));
+        }}
+        name={questionRef.current}
+        value={i}
         sx={{
-          color: correct == true && selected == label ? green[600] : red[600],
+          color:
+            selected === i ? (correct === i ? green[500] : red[500]) : "white",
           "&.Mui-checked": {
-            color: correct == true && selected == label ? green[600] : red[600],
+            color: correct === i ? green[500] : red[500],
           },
         }}
       />
