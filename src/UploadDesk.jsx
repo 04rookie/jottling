@@ -16,7 +16,7 @@ function UploadDesk() {
     whiteSpace: "nowrap",
     width: 1,
   });
-  const { postMessage } = useContext(DataContext);
+  const { postMessage, loading } = useContext(DataContext);
   const handleFileChange = (event) => {
     const file = event.target.files[0]; // Get the first selected file
 
@@ -65,22 +65,24 @@ function UploadDesk() {
       >
         <Typography
           variant="h4"
-          alt="Upload your notes here"
+          alt={loading ? "Uploading..." : "Upload your notes here"}
           inputProps={{
-            "aria-label": "Upload your notes here",
+            "aria-label": loading ? "Uploading..." : "Upload your notes here",
           }}
         >
-          Upload your notes here!
+          {loading ? "Uploading..." : "Upload your notes here!"}
         </Typography>
         <Button
+          color={loading? "primary" : "secondary"}
           style={{ marginTop: "10%" }}
           component="label"
           role={undefined}
           variant="contained"
           tabIndex={-1}
+          loading={loading}
           startIcon={<CloudUploadIcon />}
         >
-          Upload files
+          {loading ? "Uploading..." : "Upload files"}
           <VisuallyHiddenInput
             type="file"
             accept=".txt" // Restrict to text files

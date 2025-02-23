@@ -7,6 +7,7 @@ import { DateTime } from "luxon";
 import { v4 as uuid } from "uuid";
 
 const DataProvider = ({ children }) => {
+  const [loading, setLoading] = useState(false);
   // const [data, setData] = useState([
   //   {
   //     question: "Where is Earth?",
@@ -80,16 +81,18 @@ const DataProvider = ({ children }) => {
   useEffect(() => {}, []);
   async function postMessage(data) {
     try {
+      setLoading(true);
       const res = await instance.post(
         "/api/genq/",
         {
           text: data,
           // text: "Hello world"
         },
-        { timeout: 10000 }
       );
       setData(res?.data?.questions);
+      setLoading(false);
     } catch (err) {
+      setLoading(false);
       console.log(err);
     }
     return;
@@ -101,6 +104,7 @@ const DataProvider = ({ children }) => {
       value={{
         postMessage,
         data,
+        loading,
       }}
     >
       {children}
