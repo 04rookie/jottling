@@ -81,6 +81,7 @@ const DataProvider = ({ children }) => {
   useEffect(() => {}, []);
   async function postMessage(data) {
     try {
+      setData([]);
       setLoading(true);
       const res = await instance.post(
         "/api/genq/",
