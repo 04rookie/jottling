@@ -1,20 +1,25 @@
 import { Typography } from "@mui/material";
-import React from "react";
+import React, { useRef } from "react";
 import Options from "./Options";
-
-function Questions({ question, answer, selected, setSelected }) {
+import { v4 as uuidv4 } from "uuid";
+function Questions({ question, answerOptions, correct }) {
+  const questionRef = useRef(uuidv4());
+  const [selected, setSelected] = React.useState(-1);
   return (
     <div>
       <Typography variant="h4">Q: {question}</Typography>
       <div style={{ display: "flex", flexDirection: "column" }}>
-        {answer.map((ans, index) => {
+        {answerOptions.map((ans, index) => {
           return (
             <Options
               key={index}
+              i = {index}
               label={ans.label}
-              correct={ans.correct}
+              correct={correct}
               selected={selected}
               setSelected={setSelected}
+              uuid={ans.uuid}
+              questionRef={questionRef}
             />
           );
         })}

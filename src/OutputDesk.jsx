@@ -1,35 +1,40 @@
 import { Stack } from "@mui/material";
 import React, { useState } from "react";
 import Questions from "./Components/Questions";
+import { v4 as uuid } from "uuid";
+
 function OutputDesk() {
   const [data, setData] = useState([
     {
       question: "Where is Earth?",
-      answer: [
-        { label: "Mars", correct: false },
-        { label: "Moon", correct: false },
-        { label: "Earth", correct: true },
+      answerOptions: [
+        { label: "Mars", correct: false, uuid: uuid() },
+        { label: "Moon", correct: false, uuid: uuid() },
+        { label: "Earth", correct: true, uuid: uuid() },
       ],
+      correct: 2,
     },
     {
       question: "Where is the Moon?",
-      answer: [
-        { label: "Mars", correct: false },
-        { label: "Moon", correct: true },
-        { label: "Earth", correct: false },
+      answerOptions: [
+        { label: "Mars", correct: false, uuid: uuid() },
+        { label: "Moon", correct: true, uuid: uuid() },
+        { label: "Earth", correct: false, uuid: uuid() },
       ],
+      correct: 1,
     },
     {
       question: "Where is Mars?",
-      answer: [
-        { label: "Mars", correct: true },
-        { label: "Moon", correct: false },
-        { label: "Earth", correct: false },
+      answerOptions: [
+        { label: "Mars", correct: true, uuid: uuid() },
+        { label: "Moon", correct: false, uuid: uuid() },
+        { label: "Earth", correct: false, uuid: uuid() },
       ],
+      correct: 0,
     },
   ]);
 
-  const [selected, setSelected] = useState(null);
+
   return (
     <div
       style={{
@@ -49,9 +54,8 @@ function OutputDesk() {
             <Questions
               key={index}
               question={item.question}
-              answer={item.answer}
-              selected={selected}
-              setSelected={setSelected}
+              answerOptions={item.answerOptions}
+              correct={item.correct}
             />
           );
         })}

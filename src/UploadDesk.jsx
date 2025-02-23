@@ -1,7 +1,7 @@
 import { Button, Typography } from "@mui/material";
 import React from "react";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
-import { styled } from '@mui/material/styles';
+import { styled } from "@mui/material/styles";
 
 function UploadDesk() {
   const VisuallyHiddenInput = styled("input")({
@@ -15,6 +15,31 @@ function UploadDesk() {
     whiteSpace: "nowrap",
     width: 1,
   });
+
+  const handleFileChange = (event) => {
+    const file = event.target.files[0]; // Get the first selected file
+
+    // Check if the file exists and is a text file
+    if (file && file.type === "text/plain") {
+      const reader = new FileReader();
+
+      // Read the file as text
+      reader.readAsText(file);
+
+      // Handle successful reading
+      reader.onload = () => {
+        console.log("File content:", reader.result); // Log the text content
+      };
+
+      // Handle errors during reading
+      reader.onerror = () => {
+        console.error("Error reading file:", reader.error);
+      };
+    } else {
+      console.error("Please select a valid text file.");
+    }
+  };
+  
   return (
     <div
       style={{
@@ -36,7 +61,13 @@ function UploadDesk() {
           marginTop: "10%",
         }}
       >
-        <Typography variant="h4" alt="Upload your notes here">
+        <Typography
+          variant="h4"
+          alt="Upload your notes here"
+          inputProps={{
+            "aria-label": "Upload your notes here",
+          }}
+        >
           Upload your notes here!
         </Typography>
         <Button
@@ -50,8 +81,8 @@ function UploadDesk() {
           Upload files
           <VisuallyHiddenInput
             type="file"
-            onChange={(event) => console.log(event.target.files)}
-            multiple
+            accept=".txt" // Restrict to text files
+            onChange={handleFileChange}
           />
         </Button>
       </div>
