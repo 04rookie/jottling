@@ -35,6 +35,42 @@ const DataProvider = ({ children }) => {
       ],
       correct: 0,
     },
+    {
+      question: "Where is Mars?",
+      answerOptions: [
+        { label: "Mars", correct: true, uuid: uuid() },
+        { label: "Moon", correct: false, uuid: uuid() },
+        { label: "Earth", correct: false, uuid: uuid() },
+      ],
+      correct: 0,
+    },
+    {
+      question: "Where is Mars?",
+      answerOptions: [
+        { label: "Mars", correct: true, uuid: uuid() },
+        { label: "Moon", correct: false, uuid: uuid() },
+        { label: "Earth", correct: false, uuid: uuid() },
+      ],
+      correct: 0,
+    },
+    {
+      question: "Where is Mars?",
+      answerOptions: [
+        { label: "Mars", correct: true, uuid: uuid() },
+        { label: "Moon", correct: false, uuid: uuid() },
+        { label: "Earth", correct: false, uuid: uuid() },
+      ],
+      correct: 0,
+    },
+    {
+      question: "Where is Mars?",
+      answerOptions: [
+        { label: "Mars", correct: true, uuid: uuid() },
+        { label: "Moon", correct: false, uuid: uuid() },
+        { label: "Earth", correct: false, uuid: uuid() },
+      ],
+      correct: 0,
+    },
   ]);
   const instance = axios.create({
     baseURL: "http://127.0.0.1:8000",
@@ -50,6 +86,7 @@ const DataProvider = ({ children }) => {
         },
         { timeout: 10000 }
       );
+      setData(res?.data?.questions);
     } catch (err) {
       console.log(err);
     }
@@ -57,10 +94,16 @@ const DataProvider = ({ children }) => {
   }
 
   useEffect(() => {}, []);
-  return <DataContext.Provider value={{
-    postMessage,
-    data
-  }}>{children}</DataContext.Provider>;
+  return (
+    <DataContext.Provider
+      value={{
+        postMessage,
+        data,
+      }}
+    >
+      {children}
+    </DataContext.Provider>
+  );
 };
 
 DataProvider.propTypes = {

@@ -67,7 +67,7 @@ function App() {
           container
           spacing={0}
           style={{
-            height: "100vh",
+            // height: "100vh",
             width: "100vw",
             backgroundColor: theme.palette.background.black,
           }}
@@ -75,7 +75,7 @@ function App() {
           <Grid2 size={{ xs: 12, md: 6 }}>
             <div
               style={{
-                height: "100vh",
+                // height: "100vh",
                 minHeight: "-webkit-fill-available",
                 width: "100%",
                 overflowY: "scroll",

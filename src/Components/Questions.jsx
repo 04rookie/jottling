@@ -8,7 +8,7 @@ function Questions({ question, answerOptions, correct }) {
   return (
     <div>
       <Typography variant="h4">Q: {question}</Typography>
-      <div style={{ display: "flex", flexDirection: "column" }}>
+      <div style={{ display: "flex", flexDirection: "column", marginLeft: "10%" }}>
         {answerOptions.map((ans, index) => {
           return (
             <Options
