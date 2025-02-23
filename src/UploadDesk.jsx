@@ -1,7 +1,8 @@
 import { Button, Typography } from "@mui/material";
-import React from "react";
+import React, { useContext } from "react";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import { styled } from "@mui/material/styles";
+import { DataContext } from "./Context";
 
 function UploadDesk() {
   const VisuallyHiddenInput = styled("input")({
@@ -15,7 +16,7 @@ function UploadDesk() {
     whiteSpace: "nowrap",
     width: 1,
   });
-
+  const { postMessage } = useContext(DataContext);
   const handleFileChange = (event) => {
     const file = event.target.files[0]; // Get the first selected file
 
@@ -29,6 +30,7 @@ function UploadDesk() {
       // Handle successful reading
       reader.onload = () => {
         console.log("File content:", reader.result); // Log the text content
+        postMessage(reader.result);
       };
 
       // Handle errors during reading
@@ -39,7 +41,7 @@ function UploadDesk() {
       console.error("Please select a valid text file.");
     }
   };
-  
+
   return (
     <div
       style={{
