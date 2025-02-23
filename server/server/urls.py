@@ -20,7 +20,7 @@ from quiz import views
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path('api/genq/', views.question_gen_api, name='question_generation')
+    path('api/genq/', views.mcq_endpoint, name='question_generation')
 ]
 
 
