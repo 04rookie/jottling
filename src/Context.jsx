@@ -86,7 +86,7 @@ const DataProvider = ({ children }) => {
           text: data,
           // text: "Hello world"
         },
-        { timeout: 10000 }
+        { timeout: 0 }
       );
       setData(res?.data?.questions);
     } catch (err) {
