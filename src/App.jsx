@@ -67,7 +67,7 @@ function App() {
           container
           spacing={0}
           style={{
-            // height: "100vh",
+            minHeight: "100vh",
             width: "100vw",
             backgroundColor: theme.palette.background.black,
           }}
